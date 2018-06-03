@@ -9,7 +9,7 @@
 <script>
 	import {mapGetters,mapActions} from 'vuex'
 	export default{
-		name:'Couter',
+		// name:'Couter',
 		computed:mapGetters([
 
 		]),
