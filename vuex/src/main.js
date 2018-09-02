@@ -6,6 +6,8 @@ import router from './router'  //引入router文件中的index.js
 import store from './store/store'  //引入store.js
 // import echarts from 'echarts' //引入echarts 图表js
 
+import store1 from './store/index.js'
+
 
 Vue.config.productionTip = false
 // Vue.prototype.$echarts=echarts
@@ -14,7 +16,8 @@ Vue.config.productionTip = false
 new Vue({
   el: '#app',
   router,//配置路由
-  store,//配置store
+  // store,//配置store
+  store:store1,
   // echarts,
   components: { App },
   template: '<App/>'

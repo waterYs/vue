@@ -7,6 +7,10 @@
     <router-link :to="{name:'counter'}" class='couter'>couter</router-link>
     <router-link :to="{name:'echarts'}" class='echarts'>echarts</router-link>
     <router-view/>
+    <button @click='increment'>增加</button>
+    <button @click='decrement'>减少</button>
+    <p>{{count}}</p>
+    <button @click='incrementAsync'>延时增加</button>
   </div>
 </template>
 
@@ -15,15 +19,22 @@
 // import StoreDemo from './components/StoreDemo'
 // import Counter from './components/Counter'
 // import Echarts from '@/components/Echarts'
-
+import {mapGetters,mapActions} from 'vuex'
 export default {
-  // name: 'App',
+  name: 'App',
   // components: {
   //   // HelloWorld,
   //   StoreDemo,
   //   Counter,
   //   Echarts
   // }
+  data(){
+    return{
+      // count:this.$store.state
+    }
+  },
+  computed:mapGetters(['count']),
+  methods:mapActions(['increment','decrement','incrementAsync'])
 }
 </script>
 
