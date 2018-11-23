@@ -5,7 +5,7 @@
       <el-radio-button :label="true">收起</el-radio-button>
     </el-radio-group>
     <el-menu router class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose" :collapse="isCollapse">
-      <el-submenu v-for="(item,index) in recordNavList" :index="`${index}`">
+      <el-submenu v-for="(item,index) in recordNavList" :index="`${index}`" :key="item.id">
         <template slot="title">
           <i class="el-icon-location"></i>
           <span slot="title">{{item.title}}</span>
@@ -26,19 +26,21 @@
         isCollapse: true,
         recordNavList:[
           {
+            id:'01',
             title:'表单',
             itemGroup:[
-              {title:'表单1',route:subMenuRoutes.form1},
-              {title:'表单2',route:subMenuRoutes.form2},
-              {title:'表单3',route:subMenuRoutes.form3}
+              {id:'001',title:'表单1',route:subMenuRoutes.form1},
+              {id:'002',title:'表单2',route:subMenuRoutes.form2},
+              {id:'003',title:'表单3',route:subMenuRoutes.form3}
             ]
           },
           {
+            id:'02',
             title:'表格',
             itemGroup:[
-              {title:'表格1',route:subMenuRoutes.table1},
-              {title:'表格2',route:subMenuRoutes.table2},
-              {title:'表格3',route:subMenuRoutes.table3}
+              {id:'004',title:'表格1',route:subMenuRoutes.table1},
+              {id:'005',title:'表格2',route:subMenuRoutes.table2},
+              {id:'006',title:'表格3',route:subMenuRoutes.table3}
             ]
           },
         ]
@@ -46,7 +48,7 @@
     },
     created(){
       this.getRecordNavList();
-      this.addRecordNav()
+      // this.addRecordNav()
     },
     methods: {
       handleOpen(key, keyPath) {
@@ -56,12 +58,10 @@
         console.log(key, keyPath);
       },
       getRecordNavList(){
-        this.recordNavList=[];
-        this.$http.put('https://www.easy-mock.com/mock/5bf3bfefbc9cc748adb57912/self/recordNavList',{
-          name:'a'
+        this.$http.post('https://www.easy-mock.com/mock/5bf3bfefbc9cc748adb57912/self/recordNavList',{
+          data:this.recordNavList
         }).then(res=>{
-          debugger
-          // this.recordNavList=res.data.data;
+          this.recordNavList=res.data.data;
         }).catch(err=>{
           console.log(err)
         });
